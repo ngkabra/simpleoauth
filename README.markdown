@@ -1,4 +1,4 @@
-**WARNING: DON'T USE THIS YET. THIS CODE IS NEITHER COMPLETE NOR PROPERLY TESTED. Of course, if you want the help me to finish this, then please use it and send me a pull request. Thanks. It appears to work for twitter, python, linked-in (at least for simple cases).**
+**WARNING: DON'T USE THIS YET. THIS CODE IS NEITHER COMPLETE NOR PROPERLY TESTED. Of course, if you want the help me to finish this, then please use it and send me a pull request. Thanks. It appears to work for twitter, facebook, linked-in (at least for simple cases).**
 
 This is a very simplified python interface to OAuth version 1 and version 2, for those who find the python-oauth2 too complex. This depends upon my own version of [python-oauth2](https://github.com/ngkabra/python-oauth2), which is essentially a very minor variation on [zbowling/python-oauth2](https://github.com/zbowling/python-oauth2) (and which is very different form [simplegeo/python-oauth2](https://github.com/simplegeo/python-oauth2)). 
 
@@ -218,7 +218,6 @@ The main design goals for this module were:
 
 This is not even an _alpha_ version. This is just a proof-of-concept right now. Lots of work needs to be done before it can be "released" for use by others. Here are some of the most important.
 
-- Add support for 'PUT', 'POST' and 'DELETE' (right now only get is supported)
 - Add tests
 - Packaging so that it can be put on pypi, and works with easy_install and pip.
 - Add a good, comprehensive django example
