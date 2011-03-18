@@ -1,4 +1,4 @@
-**WARNING: DON'T USE THIS YET. THIS CODE IS NEITHER COMPLETE NOR PROPERLY TESTED. Of course, if you want the help me to finish this, then please use it and send me a pull request. Thanks. It appears to work for twitter, python, linked-in (at least for simple cases). So far, only "GET" functionality is tested. PUT, POST and DELETE are missing, but I'm assuming they should be easy to add.**
+**WARNING: DON'T USE THIS YET. THIS CODE IS NEITHER COMPLETE NOR PROPERLY TESTED. Of course, if you want the help me to finish this, then please use it and send me a pull request. Thanks. It appears to work for twitter, python, linked-in (at least for simple cases).**
 
 This is a very simplified python interface to OAuth version 1 and version 2, for those who find the python-oauth2 too complex. This depends upon my own version of [python-oauth2](https://github.com/ngkabra/python-oauth2), which is essentially a very minor variation on [zbowling/python-oauth2](https://github.com/zbowling/python-oauth2) (and which is very different form [simplegeo/python-oauth2](https://github.com/simplegeo/python-oauth2)). 
 
@@ -34,6 +34,9 @@ This is an example of using the Twitter API
     # and made available as a python dict
     print 'Hello, %s' % (data['name'])
 
+    # You can also post updates
+    client.post('statuses/update.json', status='I can now post to twitter using simpleoauth')
+
 Facebook uses OAuth v2, but the code is otherwise very similar. Note: facebook insists that the callback_url be specified and it should match the callback url registered with facebook along with your app. Please include that in the "consumer" tuple as shown:
 
     # Facebook (example of OAuth v2)
@@ -50,6 +53,9 @@ Facebook uses OAuth v2, but the code is otherwise very similar. Note: facebook i
 
     # As before, the data is available as a python dict
     print 'Hello, %s %s' % (data['first_name'], data['last_name'])
+
+    # Update using post
+    client.post('me/feed', message='I can post to facebook using simpleoauth', access_token=tok)
 
 **How to get an access_token - command line version**
 

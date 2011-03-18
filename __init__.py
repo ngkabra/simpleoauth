@@ -200,17 +200,18 @@ class Client(object):
         else:
             return None
 
-    def get(self, path, **params):
+    def request(self, path, method=None, **params):
         '''Make an API call to 'path' with all keyword arguments as params
         '''
         
         '''Sadly, we need to do two different types
         of call to _client.request, because they take 
         slightly different parameters'''
+        method = method or self.provider.api_http_method
         if self._is_version2:
             r, c = self._client.request(self.provider.api_url_base+path,
                                         access_token=self.access_token,
-                                        method=self.provider.api_http_method,
+                                        method=method,
                                         headers=self._headers,
                                         params=params,
                                         **self._extra_args)
@@ -222,7 +223,7 @@ class Client(object):
                 uri = "%s?%s" % (uri, urlencode(params))
             print 'URI=', uri
             r,c = self._client.request(uri,
-                                       method=self.provider.api_http_method,
+                                       method=method,
                                        headers=self._headers,
                                        **self._extra_args)
 
@@ -236,3 +237,15 @@ class Client(object):
                 return c        # no idea what the data-type is. return as-is
         else:
             raise ApiError(r, c)
+
+    def get(self, path, **params):
+        return self.request(path, method='GET', **params)
+
+    def post(self, path, **params):
+        return self.request(path, method='POST', **params)
+
+    def put(self, path, **params):
+        return self.request(path, method='PUT', **params)
+
+    def delete(self, path, **params):
+        return self.request(path, method='DELETE', **params)
